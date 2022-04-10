@@ -1,0 +1,11 @@
+Запустить планировщик заданий
+docker exec back php artisan schedule:work
+
+Запустить миграции
+docker exec back php artisan migrate
+
+После миграций не забыть создать OauthClient для модуля Passport
+docker exec back php artisan passport:install --uuids
+
+Откатить миграции
+docker exec back php artisan migrate:rollback
