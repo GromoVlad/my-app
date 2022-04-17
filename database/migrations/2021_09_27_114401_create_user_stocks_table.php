@@ -20,7 +20,7 @@ class CreateUserStocksTable extends Migration
             $table->uuid('security_id')->primary()->comment('Идентификатор данных о ценной бумаге');
             $table->integer('security_user_id')->index()->comment('Идентификатор пользователя');
             $table->uuid('security_ticker_id')->index()->comment('Идентификатор тикера ценной бумаги');
-            $table->decimal('security_price_purchase', 8, 4)->comment('Стоимость ценной бумаги на момент покупки');
+            $table->decimal('security_price_purchase', 16, 8)->comment('Стоимость ценной бумаги на момент покупки');
             $table->integer('security_number_stocks')->comment('Количество ценных бумаг данного тикера');
             $table->date('security_purchase_date')->index()->comment('Дата покупки ценных бумаг');
             $table->timestamp('security_created_at')->nullable()->comment('Дата создания');

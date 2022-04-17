@@ -19,7 +19,7 @@ class CreateTickerTable extends Migration
             $table->string('ticker_symbol', 50)->unique()->index()->comment('Тикер ценной бумаги');
             $table->string('ticker_name')->index()->nullable()->comment('Наименование ценной бумаги');
             $table->integer('ticker_lot_size')->index()->comment('Размер лота ценной бумаги');
-            $table->decimal('ticker_actual_price', 8, 4)->comment('Текущая цена ценной бумаги');
+            $table->decimal('ticker_actual_price', 16, 8)->comment('Текущая цена ценной бумаги');
             $table->uuid('ticker_currency_id')->index()->comment('Идентификатор валюты ценной бумаги');
             $table->timestamp('ticker_created_at')->nullable()->comment('Дата создания');
             $table->timestamp('ticker_updated_at')->nullable()->comment('Дата обновления');

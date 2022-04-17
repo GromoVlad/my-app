@@ -20,18 +20,20 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $ticker_name            Наименование ценной бумаги
  * @property integer $ticker_lot_size       Размер лота ценной бумаги
  * @property string $ticker_currency_id     Идентификатор валюты ценной бумаги
+ * @property float  $ticker_actual_price    Текущая цена ценной бумаги
  * @property Carbon $ticker_created_at      Дата создания
  * @property Carbon $ticker_updated_at      Дата обновления
  * @property Carbon $ticker_deleted_at      Дата удаления
  */
-class Tickers extends Model
+class Ticker extends Model
 {
     use HasFactory;
-
     const CREATED_AT = 'ticker_created_at';
     const UPDATED_AT = 'ticker_updated_at';
 
     protected $table = 'stock_market.tickers';
+    protected $primaryKey = 'ticker_id';
+    protected $keyType = 'string';
 
     protected $fillable = [
         'ticker_id',
@@ -39,6 +41,7 @@ class Tickers extends Model
         'ticker_name',
         'ticker_lot_size',
         'ticker_currency_id',
+        'ticker_actual_price',
         'ticker_updated_at',
         'ticker_deleted_at'
     ];

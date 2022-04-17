@@ -2,35 +2,30 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests\Messages;
+namespace App\Http\Requests;
 
 use App\Exceptions\BadRequestException;
-use App\Exceptions\InvariantViolationException;
-use App\ValueObjects\NotEmptyString;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use JetBrains\PhpStorm\ArrayShape;
 
-class CreateMessagesRequest extends FormRequest
+class BaseRequest extends FormRequest
 {
     public function authorize(): bool
     {
         return true;
     }
 
-    public function rules(): array
-    {
-        return [
-            'text' => 'required|string|min:1|max:512',
-        ];
-    }
-
+    #[ArrayShape(['*.required' => "string", '*.string' => "string", '*.alpha_num' => "string", '*.email' => "string", '*.min' => "string", '*.max' => "string"])]
     public function messages(): array
     {
         return [
             '*.required' => 'Поле является обязательным',
             '*.string' => 'Ожидается строка',
+            '*.alpha_num' => 'В данном поле ожидается только буквенно-цифровые символы',
+            '*.email' => 'В данном поле ожидается адрес электронной почты',
             '*.min' => 'Минимальная длина должна составлять :min знаков',
-            '*.max' => 'Максимальная длина должна быть не больше :max знаков',
+            '*.max' => 'Максимальная длина должна быть не болшьше :max знаков',
         ];
     }
 
@@ -40,13 +35,5 @@ class CreateMessagesRequest extends FormRequest
     protected function failedValidation(Validator $validator): void
     {
         throw new BadRequestException('Ошибка валидации', null, $validator->errors()->messages());
-    }
-
-    /**
-     * @throws InvariantViolationException
-     */
-    public function toVO(): NotEmptyString
-    {
-        return new NotEmptyString($this->input('text'));
     }
 }

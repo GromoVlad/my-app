@@ -45,7 +45,7 @@ class Security extends Model
 
     public function ticker(): HasOne
     {
-        return $this->hasOne(Tickers::class, 'ticker_id', 'security_ticker_id');
+        return $this->hasOne(Ticker::class, 'ticker_id', 'security_ticker_id');
     }
 }
 

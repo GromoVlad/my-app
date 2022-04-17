@@ -26,7 +26,7 @@ class CurrencySeeder extends Seeder
             [
                 'currency_id' => Uuid::uuid4(),
                 'currency_name' => 'Рубль',
-                'currency_code' => 'RUB',
+                'currency_code' => 'SUR',
                 'currency_symbol' => '₽',
                 'currency_value' => 1,
                 'currency_created_at' => date_create(),

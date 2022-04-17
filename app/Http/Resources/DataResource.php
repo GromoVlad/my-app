@@ -6,14 +6,15 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
+use JetBrains\PhpStorm\ArrayShape;
+use JetBrains\PhpStorm\Pure;
 
 class DataResource extends JsonResource
 {
-    /** @var array */
-    private $data;
-    /** @var array */
-    private $success;
+    private ?array $data;
+    private bool $success;
 
+    #[Pure]
     public function __construct(array $data = null, bool $success = true)
     {
         parent::__construct(null);
@@ -21,6 +22,7 @@ class DataResource extends JsonResource
         $this->success = $success;
     }
 
+    #[ArrayShape(['data' => "array|null", 'success' => "bool"])]
     public function toArray($request): array
     {
         return [

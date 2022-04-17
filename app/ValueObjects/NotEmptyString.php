@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace App\ValueObjects;
 
 use App\Exceptions\InvariantViolationException;
+use JetBrains\PhpStorm\Pure;
 
 class NotEmptyString
 {
-     private $value;
+     private string $value;
 
     /**
      * @throws InvariantViolationException
@@ -27,6 +28,7 @@ class NotEmptyString
         return $this->value;
     }
 
+    #[Pure]
     public function __toString(): string
     {
         return $this->getValue();

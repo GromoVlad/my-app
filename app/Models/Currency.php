@@ -40,6 +40,6 @@ class Currency extends Model
 
     public function tickers(): HasMany
     {
-        return $this->hasMany(Tickers::class, 'ticker_currency_id', 'currency_id');
+        return $this->hasMany(Ticker::class, 'ticker_currency_id', 'currency_id');
     }
 }

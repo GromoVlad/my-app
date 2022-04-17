@@ -1,18 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Dto\Auth;
+
+use JetBrains\PhpStorm\ArrayShape;
+use JetBrains\PhpStorm\Pure;
 
 class RegisterDto
 {
-    private $name;
-    private $email;
-    private $password;
-
-    public function __construct(string $name, string $email, string $password)
+    public function __construct(private string $name, private string $email, private string $password)
     {
-        $this->name = $name;
-        $this->email = $email;
-        $this->password = $password;
     }
 
     public function getName(): string
@@ -35,6 +33,7 @@ class RegisterDto
         $this->password = $password;
     }
 
+    #[Pure] #[ArrayShape(['name' => "string", 'email' => "string", 'password' => "string"])]
     public function toArray(): array
     {
         return [

@@ -24,9 +24,9 @@ class CreateCurrencyExchangeRateTable extends Migration
         Schema::create('stock_market.currencies', function (Blueprint $table) {
             $table->uuid('currency_id')->primary()->comment('Идентификатор валюты');
             $table->string('currency_name', 255)->index()->comment('Наименование валюты');
-            $table->enum('currency_code', ['USD', 'RUB', 'EUR'])->index()->comment('Код валюты');
+            $table->enum('currency_code', ['USD', 'RUB', 'SUR','EUR'])->index()->comment('Код валюты');
             $table->enum('currency_symbol', ['$', '₽', '€'])->index()->comment('Символ валюты');
-            $table->decimal('currency_value', 8, 4 )->comment('Стоимость валюты в рублях');
+            $table->decimal('currency_value', 16, 8 )->comment('Стоимость валюты в рублях');
             $table->timestamp('currency_created_at')->nullable()->comment('Дата создания');
             $table->timestamp('currency_updated_at')->nullable()->comment('Дата обновления');
             $table->timestamp('currency_deleted_at')->nullable()->comment('Дата удаления');

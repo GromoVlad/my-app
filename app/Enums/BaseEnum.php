@@ -5,10 +5,21 @@ declare(strict_types=1);
 namespace App\Enums;
 
 use Illuminate\Support\Collection;
-use Illuminate\Validation\Rules\Enum;
+use JetBrains\PhpStorm\Pure;
+use WrongEnumException;
 
 abstract class BaseEnum extends Enum
 {
+    private mixed $value;
+
+    public function __construct($value)
+    {
+        if (!self::contains($value)) {
+            throw new WrongEnumException(get_called_class(), $value);
+        }
+        $this->value = $value;
+    }
+
     /**
      * @return Collection<BaseEnum>
      */
@@ -19,8 +30,13 @@ abstract class BaseEnum extends Enum
         });
     }
 
-    public function __toString(): string
+    #[Pure] public function __toString(): string
     {
         return (string)$this->getValue();
+    }
+
+    public function getValue()
+    {
+        return $this->value;
     }
 }
